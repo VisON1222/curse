@@ -1,1 +1,89 @@
-from tkinter import * import tkinter.messagebox class PrimerGUI: def __init__(self, master): self.master = master master.title("Encuesta de satisfaccion del curso Python") self.radio1 = IntVar() self.radio2 = IntVar() self.radio3 = IntVar() self.nombre = StringVar() self.apellidos = StringVar() self.subdireccion = StringVar() self.texto = StringVar() self.etiqueta1 = Label(master, text="¿Estas satisfecho con el contenido del curso Python?: ").place(x=20, y=20) self.c11 = Radiobutton(master, text="1", value=1, variable=self.radio1).place(x=80, y=40) self.c12 = Radiobutton(master, text="2", value=2, variable=self.radio1).place(x=140, y=40) self.c13 = Radiobutton(master, text="3", value=3, variable=self.radio1).place(x=200, y=40) self.c14 = Radiobutton(master, text="4", value=4, variable=self.radio1).place(x=260, y=40) self.c15 = Radiobutton(master, text="5", value=5, variable=self.radio1).place(x=320, y=40) self.etiqueta2 = Label(master, text="¿Recomendaria el curso a otros compañeros?: ").place(x=20, y=70) self.c21 = Radiobutton(master, text="1", value=1, variable=self.radio2).place(x=80, y=90) self.c22 = Radiobutton(master, text="2", value=2, variable=self.radio2).place(x=140, y=90) self.c23 = Radiobutton(master, text="3", value=3, variable=self.radio2).place(x=200, y=90) self.c24 = Radiobutton(master, text="4", value=4, variable=self.radio2).place(x=260, y=90) self.c25 = Radiobutton(master, text="5", value=5, variable=self.radio2).place(x=320, y=90) self.etiqueta3 = Label(master, text="¿Le ha parecido adecuado el material y contenido del curso?: ").place(x=20, y=120) self.c31 = Radiobutton(master, text="1", value=1, variable=self.radio3).place(x=80, y=150) self.c32 = Radiobutton(master, text="2", value=2, variable=self.radio3).place(x=140, y=150) self.c33 = Radiobutton(master, text="3", value=3, variable=self.radio3).place(x=200, y=150) self.c34 = Radiobutton(master, text="4", value=4, variable=self.radio3).place(x=260, y=150) self.c35 = Radiobutton(master, text="5", value=5, variable=self.radio3).place(x=320, y=150) self.etiqueta4 = Label(master, text="Observaciones sobre material, aula, profesores...").place(x=20, y=180) self.texto = Text(master, height=10, width=45) self.texto.place(x=20, y=200) self.etiqueta5 = Label(master, text="Introduzca, si lo desea, sus datos personales").place(x=20, y=380) self.etiqueta6 = Label(master, text="Nombre").place(x=20, y=400) self.name = Entry(master, textvariable=self.nombre).place(x=120, y=400) self.etiqueta7 = Label(master, text="Apellidos").place(x=20, y=420) self.ape = Entry(master, textvariable=self.apellidos).place(x=120, y=420) self.etiqueta8 = Label(master, text="Subdireccion").place(x=20,y=440) self.subdire = Entry(master, textvariable=self.subdireccion).place(x=120, y=440) self.boton = Button(master, text="Enviar comentarios", command=self.operacion).place(x=150, y=475) def operacion(self): n1 = self.radio1.get() n2 = self.radio2.get() n3 = self.radio3.get() nota = (n1+n2+n3)/3 texto1 = self.texto.get('1.0', 'end-1c') tkinter.messagebox.showinfo ("Gracias por su tiempo", "Gracias por su asistencia "+str(self.nombre.get())+" "+str(self.apellidos.get())+". Su valoracion media del curso es "+str(nota)+" \n Observaciones: "+texto1) root = Tk() root.geometry("400x550") gui = PrimerGUI(root) root.mainloop()
+from tkinter import *
+import tkinter.messagebox
+
+class PrimerGUI(Tk):
+    def __init__(self):
+        super().__init__() #llama al constructor de la clase padre
+        self.title("Encuesta de satisfaccion del curso Python")
+        self.geometry("420x620+30+30")
+
+        #------------
+        #PREGUNTA1
+        #------------
+        self.pregunta1 = IntVar() #variable para el grupo de esta pregunta
+        self.etiqueta1 = (Label(self, text="¿Estas satisfecho con el contenido del curso Python?")).place(x=15,y=30)
+        self.botonP1Uno = Radiobutton(self,text="1", value=1, variable=self.pregunta1).place(x=75,y=50)
+        self.botonP1Dos = Radiobutton(self, text="2", value=2, variable=self.pregunta1).place(x=140,y=50)
+        self.botonP1Tres = Radiobutton(self, text="3", value=3, variable=self.pregunta1).place(x=195,y=50)
+        self.botonP1Cuatro = Radiobutton(self, text="4", value=4, variable=self.pregunta1).place(x=250,y=50)
+        self.botonP1Cinco = Radiobutton(self, text="5", value=5, variable=self.pregunta1).place(x=310,y=50)
+        # ------------
+        # PREGUNTA2
+        # ------------
+        self.pregunta2 = IntVar()  # variable para el grupo de esta pregunta
+        self.etiqueta2 = (Label(self, text="¿Recomendaria el curso a otros compañeros?")).place(x=15, y=80)
+        self.botonP2Uno = Radiobutton(self, text="1", value=1, variable=self.pregunta2).place(x=75, y=110)
+        self.botonP2Dos = Radiobutton(self, text="2", value=2, variable=self.pregunta2).place(x=140, y=110)
+        self.botonP2Tres = Radiobutton(self, text="3", value=3, variable=self.pregunta2).place(x=195, y=110)
+        self.botonP2Cuatro = Radiobutton(self, text="4", value=4, variable=self.pregunta2).place(x=250, y=110)
+        self.botonP2Cinco = Radiobutton(self, text="5", value=5, variable=self.pregunta2).place(x=310, y=110)
+        # ------------
+        # PREGUNTA3
+        # ------------
+        self.pregunta3 = IntVar()  # variable para el grupo de esta pregunta
+        self.etiqueta3 = (Label(self, text="¿Le ha parecido adecuado el material y contenido del curso?")).place(x=15, y=140)
+        self.botonP3Uno = Radiobutton(self, text="1", value=1, variable=self.pregunta3).place(x=75, y=170)
+        self.botonP3Dos = Radiobutton(self, text="2", value=2, variable=self.pregunta3).place(x=140, y=170)
+        self.botonP3Tres = Radiobutton(self, text="3", value=3, variable=self.pregunta3).place(x=195, y=170)
+        self.botonP3Cuatro = Radiobutton(self, text="4", value=4, variable=self.pregunta3).place(x=250, y=170)
+        self.botonP3Cinco = Radiobutton(self, text="5", value=5, variable=self.pregunta3).place(x=310, y=170)
+        # ------------
+        # PREGUNTA4
+        # ------------
+        self.etiquetaTextoObservaciones = Label(self, text="Observaciones sobre material, aulas, profesores...").place(x=15, y=200)
+        self.campo_observaciones =  Text(self, width=45, height=10)
+        self.campo_observaciones.place(x=15, y=230)
+
+        # ------------
+        # PREGUNTA5
+        # ------------
+        self.nombre = StringVar()
+        self.apellidos = StringVar()
+        self.subdireccion = StringVar()
+        self.etiquetaTextoInputs = Label(self, text="Introduzca, si lo desea, sus datos personales").place(x=15, y=400)
+        self.etiquetaInput1 = Label(self, text="Nombre").place(x=15, y=430)
+        self.nombreInput = Entry(self, textvariable=self.nombre).place(x=100, y=430)
+        self.etiquetaInput2 = Label(self, text="Apellidos").place(x=15, y=460)
+        self.apellidosInput = Entry(self, textvariable=self.apellidos).place(x=100, y=460)
+        self.etiquetaInput3 = Label(self, text="Subdireccion").place(x=15, y=490)
+        self.subdireccionInput = Entry(self, textvariable=self.subdireccion).place(x=100, y=490)
+
+        # ------------
+        # BOTON
+        # ------------
+        self.boton = Button(self, text="Enviar comentarios", command=self.enviar).place(x=100, y=520)
+
+    def obtener_valor1(self):
+        #valor = self.pregunta1.get()
+        #print(f"El valor 1 es {valor}")
+        return self.pregunta1.get()
+
+    def obtener_valor2(self):
+        #valor = self.pregunta2.get()
+        #print(f"El valor 2 es {valor}")
+        return self.pregunta2.get()
+
+    def obtener_valor3(self):
+        #valor = self.pregunta3.get()
+        #print(f"El valor 3 es {valor}")
+        return self.pregunta3.get()
+
+    def obtener_observaciones(self):
+        return self.campo_observaciones.get("1.0", END) #desde la linea 1 caracter 0 hasta el final del texto
+
+    def enviar(self):
+        tkinter.messagebox.showinfo("Gracias por su tiempo","Gracias por su asistencia "+self.nombre.get()+" "+self.apellidos.get()+". Su valoracion media del curso es "+ str((self.obtener_valor1()+self.obtener_valor2()+self.obtener_valor3())/3)+"\n Observaciones: "+self.obtener_observaciones())
+
+#Creación de una ventana:
+ventana = PrimerGUI()
+ventana.mainloop() #para mantener la ventana abierta
